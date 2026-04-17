@@ -20,7 +20,7 @@ List. Claim. Repeat — before the clock runs out.
 > _Screenshots will be added here_
 
 | Feed (Light Mode) | Feed (Dark Mode) | Item Detail | List an Item |
-|::|:-:|:-:|:-:|
+
 | ![alt text](image.png) | ![alt text](image-4.png) | ![alt text](image-5.png) | ![alt text](image-6.png) |
 
 ---
