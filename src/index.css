@@ -5,42 +5,69 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #F4F4F0;
-  --color-card: #FFFFFF;
-  --color-accent: #FF3366;
+  --bg-main: #F4F4F0;
+  --text-main: #111111;
+  --border-main: #111111;
+  --shadow-main: rgba(0, 0, 0, 1);
+  --shadow-hard: rgba(0, 0, 0, 1);
+
+  --card-main: #ffffff;
+  --surface-muted: #f1f1f1;
+  --input-bg: #ffffff;
+  --input-focus: #ffffa5;
+  --price-bg: #ffffa5;
+  --price-text: #111111;
+  --nav-bg: rgba(255, 255, 255, 0.96);
+  --text-muted: #444444;
+  --impact-bg: #00c27c;
+  --impact-text: #111111;
+
+  --glitch-base: #ffffff;
+  --glitch-before: #ff3366;
+  --glitch-after: #00ffff;
+
+  --border-width: 4px;
+  --shadow-brutal: 8px 8px 0px 0px var(--shadow-hard);
+  --shadow-brutal-hover: 10px 10px 0px 0px var(--shadow-hard);
+  --shadow-brutal-active: 0px 0px 0px 0px var(--shadow-hard);
+
+  --color-bg: var(--bg-main);
+  --color-card: var(--card-main);
+  --color-accent: #ff3366;
   --color-fomo: #FF2D55;
   --color-available: #00E5FF;
-  --color-text: #111111;
-  --color-text-muted: #444444;
-  --color-border: #111111;
-  --color-nav-bg: rgba(255, 255, 255, 0.96);
-  --color-surface-muted: #f1f1f1;
-  --color-input-bg: #ffffff;
-  --color-input-focus: #ffffa5;
-  --color-price-bg: #ffffa5;
-  --color-price-text: #111111;
-
-  --border-width: 3px;
-  --shadow-brutal: 5px 5px 0px 0px var(--color-border);
-  --shadow-brutal-hover: 7px 7px 0px 0px var(--color-border);
-  --shadow-brutal-active: 0px 0px 0px 0px var(--color-border);
+  --color-text: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border-main);
+  --color-nav-bg: var(--nav-bg);
+  --color-surface-muted: var(--surface-muted);
+  --color-input-bg: var(--input-bg);
+  --color-input-focus: var(--input-focus);
+  --color-price-bg: var(--price-bg);
+  --color-price-text: var(--price-text);
 }
 
-:root[data-theme='dark'] {
-  --color-bg: #0f1115;
-  --color-card: #1a1d23;
-  --color-accent: #ff4d7a;
-  --color-fomo: #ff5b80;
-  --color-available: #35d8b8;
-  --color-text: #f5f7fb;
-  --color-text-muted: #bcc4d1;
-  --color-border: #7f8a9c;
-  --color-nav-bg: rgba(26, 29, 35, 0.95);
-  --color-surface-muted: #252b36;
-  --color-input-bg: #1f2530;
-  --color-input-focus: #2e3645;
-  --color-price-bg: #ffca6b;
-  --color-price-text: #1a1d23;
+.dark {
+  --bg-main: #0F111A;
+  --text-main: #C0CAF5;
+  --border-main: #9AA5CE;
+  --shadow-main: rgba(8, 10, 18, 0.78);
+  --shadow-hard: rgba(8, 10, 18, 1);
+
+  --card-main: #161A28;
+  --surface-muted: #131624;
+  --input-bg: #131624;
+  --input-focus: #1E2234;
+  --price-bg: #f4c95d;
+  --price-text: #0F111A;
+  --nav-bg: rgba(15, 17, 26, 0.96);
+  --text-muted: #8894BD;
+  --impact-bg: #1f6f73;
+  --impact-text: #e6f7f7;
+
+  --glitch-base: #ff3366;
+  --glitch-before: #BB9AF7;
+  --glitch-after: #F7768E;
 }
 
 * {
@@ -49,8 +76,8 @@
 
 body {
   margin: 0;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-family: 'Space Grotesk', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -67,20 +94,21 @@ body {
   width: 14px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bg);
-  border-left: var(--border-width) solid var(--color-border);
+  background: var(--bg-main);
+  border-left: var(--border-width) solid var(--border-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border-left: var(--border-width) solid var(--color-border);
-  border-bottom: var(--border-width) solid var(--color-border);
+  background: #ff3366;
+  border-left: var(--border-width) solid var(--border-main);
+  border-bottom: var(--border-width) solid var(--border-main);
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-accent text-[var(--color-bg)] font-black py-3 px-6 
-      border-[3px] border-[var(--color-border)] uppercase tracking-wider
+    @apply text-bg-main font-black py-3 px-6 
+      border-[4px] border-border-main uppercase tracking-wider
       transition-all duration-150 active:translate-x-1 active:translate-y-1;
+    background: #ff3366;
     box-shadow: var(--shadow-brutal);
   }
   
@@ -94,10 +122,10 @@ body {
   }
 
   .btn-ghost {
-    @apply text-[var(--color-text)] font-black uppercase tracking-wider
-      py-2 px-4 border-[3px] border-[var(--color-border)] 
+    @apply text-text-main font-black uppercase tracking-wider
+      py-2 px-4 border-[4px] border-border-main 
       transition-all duration-150 active:translate-x-1 active:translate-y-1;
-    background: var(--color-card);
+    background: var(--card-main);
     box-shadow: var(--shadow-brutal);
   }
 
@@ -111,8 +139,9 @@ body {
   }
 
   .card {
-    @apply bg-card border-[3px] border-[var(--color-border)] overflow-hidden
+    @apply border-[4px] border-border-main overflow-hidden
       transition-all duration-200;
+    background: var(--card-main);
     box-shadow: var(--shadow-brutal);
   }
 
@@ -122,32 +151,186 @@ body {
   }
 
   .input-field {
-    @apply w-full border-[3px] border-[var(--color-border)] text-[var(--color-text)]
+    @apply w-full border-[4px] border-border-main text-text-main
       px-4 py-3 outline-none transition-colors
-      placeholder-[var(--color-text-muted)] font-bold;
-    background: var(--color-input-bg);
+      placeholder-[var(--text-muted)] font-bold;
+    background: var(--input-bg);
     box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.05);
   }
 
   .input-field:focus {
-    background: var(--color-input-focus);
+    background: var(--input-focus);
   }
 
   .badge-fomo {
     @apply bg-fomo text-white text-xs font-black px-2 py-1 
-      border-[3px] border-[var(--color-border)] uppercase tracking-wider animate-pulse inline-block;
-    box-shadow: 3px 3px 0px 0px var(--color-border);
+      border-[4px] border-border-main uppercase tracking-wider animate-pulse inline-block;
+    box-shadow: 4px 4px 0px 0px var(--shadow-hard);
   }
 
   .badge-sold {
     @apply bg-[#CCCCCC] text-[#111111] text-xs font-black px-2 py-1 
-      border-[3px] border-[var(--color-border)] uppercase tracking-wider inline-block;
-    box-shadow: 3px 3px 0px 0px var(--color-border);
+      border-[4px] border-border-main uppercase tracking-wider inline-block;
+    box-shadow: 4px 4px 0px 0px var(--shadow-hard);
   }
 
   .badge-available {
     @apply bg-available text-[#111111] text-xs font-black px-2 py-1 
-      border-[3px] border-[var(--color-border)] uppercase tracking-wider inline-block;
-    box-shadow: 3px 3px 0px 0px var(--color-border);
+      border-[4px] border-border-main uppercase tracking-wider inline-block;
+    box-shadow: 4px 4px 0px 0px var(--shadow-hard);
   }
+}
+
+@keyframes glitch-aberration {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) skew(0deg);
+  }
+  12% {
+    transform: translate3d(-1px, 1px, 0) skew(0.8deg);
+  }
+  24% {
+    transform: translate3d(2px, -1px, 0) skew(-1deg);
+  }
+  36% {
+    transform: translate3d(-2px, 0, 0) skew(0.5deg);
+  }
+  48% {
+    transform: translate3d(1px, 2px, 0) skew(-0.8deg);
+  }
+  60% {
+    transform: translate3d(-1px, -2px, 0) skew(0.9deg);
+  }
+  72% {
+    transform: translate3d(2px, 1px, 0) skew(-0.7deg);
+  }
+  84% {
+    transform: translate3d(-2px, -1px, 0) skew(0.6deg);
+  }
+}
+
+@keyframes glitch-crt {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) skew(0deg);
+    filter: saturate(1.1) contrast(1.05);
+  }
+  8% {
+    transform: translate3d(-2px, 1px, 0) skew(1.2deg);
+  }
+  16% {
+    transform: translate3d(2px, -2px, 0) skew(-1deg);
+  }
+  24% {
+    transform: translate3d(-3px, 1px, 0) skew(0.8deg);
+  }
+  32% {
+    transform: translate3d(3px, 0, 0) skew(-1.2deg);
+  }
+  40% {
+    transform: translate3d(-2px, -1px, 0) skew(0.5deg);
+  }
+  48% {
+    transform: translate3d(1px, 2px, 0) skew(-0.9deg);
+  }
+  56% {
+    transform: translate3d(-1px, -2px, 0) skew(1.1deg);
+  }
+  64% {
+    transform: translate3d(3px, -1px, 0) skew(-0.7deg);
+  }
+  72% {
+    transform: translate3d(-3px, 2px, 0) skew(1deg);
+  }
+  80% {
+    transform: translate3d(2px, 1px, 0) skew(-1.1deg);
+  }
+  88% {
+    transform: translate3d(-2px, 0, 0) skew(0.9deg);
+  }
+}
+
+@keyframes glitch-crt-scan-top {
+  0%, 100% {
+    transform: translate3d(3px, -1px, 0);
+    clip-path: inset(0 0 56% 0);
+  }
+  25% {
+    transform: translate3d(-4px, 1px, 0);
+    clip-path: inset(0 0 43% 0);
+  }
+  50% {
+    transform: translate3d(4px, -2px, 0);
+    clip-path: inset(0 0 60% 0);
+  }
+  75% {
+    transform: translate3d(-3px, 0, 0);
+    clip-path: inset(0 0 47% 0);
+  }
+}
+
+@keyframes glitch-crt-scan-bottom {
+  0%, 100% {
+    transform: translate3d(-3px, 1px, 0);
+    clip-path: inset(58% 0 0 0);
+  }
+  20% {
+    transform: translate3d(4px, -1px, 0);
+    clip-path: inset(50% 0 0 0);
+  }
+  45% {
+    transform: translate3d(-4px, 2px, 0);
+    clip-path: inset(62% 0 0 0);
+  }
+  70% {
+    transform: translate3d(3px, 0, 0);
+    clip-path: inset(54% 0 0 0);
+  }
+}
+
+.glitch-container {
+  position: relative;
+  display: inline-block;
+  color: var(--glitch-base);
+  animation: glitch-aberration 2.1s infinite linear;
+}
+
+.glitch-container::before,
+.glitch-container::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glitch-container::before {
+  color: var(--glitch-before);
+  transform: translate3d(2px, 0, 0);
+  clip-path: inset(0 0 48% 0);
+  animation: glitch-aberration 1.4s infinite linear reverse;
+}
+
+.glitch-container::after {
+  color: var(--glitch-after);
+  transform: translate3d(-2px, 0, 0);
+  clip-path: inset(52% 0 0 0);
+  animation: glitch-aberration 1.8s infinite linear;
+}
+
+.dark .glitch-container {
+  animation: glitch-crt 1.25s infinite steps(2, end);
+  text-shadow:
+    0 0 2px rgba(187, 154, 247, 0.75),
+    0 0 8px rgba(247, 118, 142, 0.45),
+    0 0 14px rgba(255, 51, 102, 0.4);
+}
+
+.dark .glitch-container::before {
+  color: var(--glitch-before);
+  mix-blend-mode: screen;
+  animation: glitch-crt-scan-top 0.75s infinite steps(2, end);
+}
+
+.dark .glitch-container::after {
+  color: var(--glitch-after);
+  mix-blend-mode: screen;
+  animation: glitch-crt-scan-bottom 0.68s infinite steps(2, end);
 }

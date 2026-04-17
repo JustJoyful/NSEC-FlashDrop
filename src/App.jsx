@@ -20,7 +20,7 @@ function App() {
   const [theme, setTheme] = useState(getInitialTheme)
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
+    document.documentElement.classList.toggle('dark', theme === 'dark')
     window.localStorage.setItem(THEME_KEY, theme)
   }, [theme])
 
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
+      <div className="min-h-screen bg-bg-main text-text-main">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -43,12 +43,9 @@ function App() {
           type="button"
           onClick={toggleTheme}
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          className="fixed right-3 bottom-3 sm:right-5 sm:bottom-5 z-50 border-[3px] px-3 py-2 font-black text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5"
+          className="fixed right-3 bottom-3 sm:right-5 sm:bottom-5 z-50 border-[4px] border-border-main px-3 py-2 font-black text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5 bg-bg-main text-text-main shadow-[8px_8px_0px_0px_var(--shadow-hard)]"
           style={{
-            background: 'var(--color-card)',
-            color: 'var(--color-text)',
-            borderColor: 'var(--color-border)',
-            boxShadow: 'var(--shadow-brutal)',
+            background: 'var(--card-main)',
           }}
         >
           {theme === 'dark' ? '☀ Light' : '🌙 Dark'}

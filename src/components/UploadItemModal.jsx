@@ -134,17 +134,17 @@ export default function UploadItemModal({ onClose }) {
     >
       <div
         className="w-full max-w-2xl max-h-[92vh] overflow-y-auto border-[4px]"
-        style={{ background: 'var(--color-card)', borderColor: 'var(--color-border)', boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)' }}
+        style={{ background: 'var(--card-main)', borderColor: 'var(--border-main)', boxShadow: '8px 8px 0px 0px var(--shadow-hard)' }}
       >
-        <div className="flex items-center justify-between p-5 border-b-[4px]" style={{ borderColor: 'var(--color-border)' }}>
-          <h2 className="text-lg font-black uppercase tracking-wide" style={{ color: 'var(--color-text)' }}>
+        <div className="flex items-center justify-between p-5 border-b-[4px]" style={{ borderColor: 'var(--border-main)' }}>
+          <h2 className="text-lg font-black uppercase tracking-wide text-text-main">
             List an Item
           </h2>
           <button
             type="button"
             onClick={onClose}
             className="text-xl font-black border-[4px] px-3 py-1 leading-none"
-            style={{ color: 'var(--color-text)', borderColor: 'var(--color-border)', background: 'var(--color-card)' }}
+            style={{ color: 'var(--text-main)', borderColor: 'var(--border-main)', background: 'var(--card-main)' }}
           >
             ×
           </button>
@@ -152,17 +152,17 @@ export default function UploadItemModal({ onClose }) {
 
         <form onSubmit={handleSubmit} className="p-5 space-y-4" id="upload-item-form">
           <div>
-            <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>
+            <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">
               Photos
             </label>
             <label
               className="block w-full border-[4px] border-dashed p-5 cursor-pointer text-center"
-              style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface-muted)' }}
+              style={{ borderColor: 'var(--border-main)', background: 'var(--surface-muted)' }}
             >
-              <p className="text-sm font-black uppercase tracking-wide" style={{ color: 'var(--color-text)' }}>
+              <p className="text-sm font-black uppercase tracking-wide text-text-main">
                 Drop or choose images (multiple allowed)
               </p>
-              <p className="text-xs font-bold mt-1" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs font-bold mt-1 text-text-main">
                 JPG / PNG / WEBP under 5MB each
               </p>
               <input type="file" accept="image/*" multiple onChange={handleImages} className="hidden" />
@@ -171,7 +171,7 @@ export default function UploadItemModal({ onClose }) {
             {imagePreviews.length > 0 && (
               <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-3">
                 {imagePreviews.map((preview, idx) => (
-                  <div key={preview} className="aspect-square border-[4px]" style={{ borderColor: 'var(--color-border)' }}>
+                  <div key={preview} className="aspect-square border-[4px]" style={{ borderColor: 'var(--border-main)' }}>
                     <img src={preview} alt={`Selected ${idx + 1}`} className="w-full h-full object-cover" />
                   </div>
                 ))}
@@ -180,24 +180,24 @@ export default function UploadItemModal({ onClose }) {
           </div>
 
           <div>
-            <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>Item Title *</label>
+            <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">Item Title *</label>
             <input id="title-input" name="title" value={form.title} onChange={handleChange} required placeholder="e.g. Engineering Physics textbook" className="input-field" />
           </div>
 
           <div>
-            <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>Price (₹) *</label>
+            <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">Price (₹) *</label>
             <input id="price-input" name="price" type="number" value={form.price} onChange={handleChange} required min="1" placeholder="200" className="input-field" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>Category *</label>
+              <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">Category *</label>
               <select id="category-select" name="category" value={form.category} onChange={handleChange} className="input-field">
                 {CATEGORIES.map(c => <option key={c}>{c}</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>Condition *</label>
+              <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">Condition *</label>
               <select id="condition-select" name="condition" value={form.condition} onChange={handleChange} className="input-field">
                 {CONDITIONS.map(c => <option key={c}>{c}</option>)}
               </select>
@@ -205,23 +205,23 @@ export default function UploadItemModal({ onClose }) {
           </div>
 
           <div>
-            <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>WhatsApp Number *</label>
+            <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">WhatsApp Number *</label>
             <input id="whatsapp-input" name="seller_whatsapp" value={form.seller_whatsapp} onChange={handleChange} required placeholder="919XXXXXXXXX" className="input-field" />
           </div>
 
           <div>
-            <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>Expiry *</label>
+            <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">Expiry *</label>
             <input id="expiry-input" name="expires_at" type="datetime-local" value={form.expires_at} onChange={handleChange} min={minExpiry} required className="input-field" />
           </div>
 
           <div>
-            <label className="block text-xs font-black uppercase tracking-wide mb-2" style={{ color: 'var(--color-text-muted)' }}>Description</label>
+            <label className="block text-xs font-black uppercase tracking-wide mb-2 text-text-main">Description</label>
             <textarea id="description-input" name="description" value={form.description} onChange={handleChange} rows={4} placeholder="Any extra details..." className="input-field resize-none" />
           </div>
 
-          {error && <p className="text-sm font-black uppercase" style={{ color: 'var(--color-fomo)' }}>{error}</p>}
+          {error && <p className="text-sm font-black uppercase" style={{ color: '#FF2D55' }}>{error}</p>}
 
-          <button id="submit-listing-btn" type="submit" disabled={loading} className="w-full border-[4px] py-3 px-4 text-sm font-black uppercase tracking-wide disabled:opacity-60" style={{ color: 'var(--color-bg)', background: 'var(--color-accent)', borderColor: 'var(--color-border)', boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)' }}>
+          <button id="submit-listing-btn" type="submit" disabled={loading} className="w-full border-[4px] py-3 px-4 text-sm font-black uppercase tracking-wide disabled:opacity-60" style={{ color: 'var(--bg-main)', background: '#ff3366', borderColor: 'var(--border-main)', boxShadow: '8px 8px 0px 0px var(--shadow-hard)' }}>
             {loading ? 'Posting...' : 'Post Listing'}
           </button>
         </form>

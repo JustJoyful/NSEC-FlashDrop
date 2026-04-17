@@ -11,10 +11,10 @@ const CATEGORY_EMOJI = {
 
 export default function CategoryFilter({ selected, onSelect }) {
   const inactiveStyle = {
-    background: 'var(--color-card)',
-    color: 'var(--color-text)',
-    borderColor: 'var(--color-border)',
-    boxShadow: '2px 2px 0px 0px var(--color-border)',
+    background: 'var(--card-main)',
+    color: 'var(--text-main)',
+    borderColor: 'var(--border-main)',
+    boxShadow: '4px 4px 0px 0px var(--shadow-hard)',
   }
 
   return (
@@ -24,9 +24,9 @@ export default function CategoryFilter({ selected, onSelect }) {
           key={cat}
           id={`filter-${cat.toLowerCase()}`}
           onClick={() => onSelect(cat)}
-          className={`text-sm font-black uppercase tracking-wider px-4 py-2 border-[3px] transition-all duration-200 transform hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_var(--color-border)] ${
+          className={`text-sm font-black uppercase tracking-wider px-4 py-2 border-[4px] transition-all duration-200 transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--shadow-hard)] ${
             selected === cat
-              ? 'bg-[#FF3366] text-white border-[var(--color-border)] shadow-[4px_4px_0px_0px_var(--color-border)]'
+              ? 'bg-flash-pink text-white border-border-main shadow-[4px_4px_0px_0px_var(--shadow-hard)]'
               : ''
           }`}
           style={selected === cat ? undefined : inactiveStyle}
