@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useItems } from '../hooks/useItems'
 import { supabase } from '../lib/supabase'
 import ItemGrid from '../components/ItemGrid'
@@ -9,7 +10,9 @@ export default function Home() {
   const [category, setCategory] = useState('All')
   const [user, setUser] = useState(null)
   const [savedCount, setSavedCount] = useState(0)
-  const { items, loading, error } = useItems(category)
+  const [searchParams] = useSearchParams()
+  const searchQuery = (searchParams.get('q') || '').trim()
+  const { items, loading, error } = useItems(category, searchQuery)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -93,6 +96,15 @@ export default function Home() {
 
       {/* Category filter */}
       <CategoryFilter selected={category} onSelect={setCategory} />
+
+      {searchQuery && (
+        <div
+          className="inline-flex items-center gap-2 border-[4px] border-border-main px-4 py-2 text-xs sm:text-sm font-black uppercase tracking-wider"
+          style={{ background: 'var(--card-main)', boxShadow: '6px 6px 0px 0px var(--shadow-hard)' }}
+        >
+          Results for: <span className="text-flash-pink">{searchQuery}</span>
+        </div>
+      )}
 
       {/* Grid */}
       <ItemGrid items={items} loading={loading} error={error} currentUser={user} />

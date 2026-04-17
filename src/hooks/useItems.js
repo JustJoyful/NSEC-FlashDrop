@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { supabase } from '../lib/supabase'
 
 /**
  * useItems — fetches active listings and subscribes to realtime updates.
  * Items are filtered by: not sold, not expired.
  */
-export function useItems(category = null) {
+export function useItems(category = null, searchQuery = '') {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -55,5 +55,15 @@ export function useItems(category = null) {
     }
   }, [category])
 
-  return { items, loading, error, refetch: fetchItems }
+  const normalizedSearch = searchQuery.trim().toLowerCase()
+  const filteredItems = useMemo(() => {
+    if (!normalizedSearch) return items
+
+    return items.filter(item => {
+      const candidates = [item.title, item.description, item.seller_name, item.category]
+      return candidates.some(value => typeof value === 'string' && value.toLowerCase().includes(normalizedSearch))
+    })
+  }, [items, normalizedSearch])
+
+  return { items: filteredItems, loading, error, refetch: fetchItems }
 }
