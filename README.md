@@ -5,7 +5,7 @@ NSEC FlashDrop is an urgency-driven campus marketplace for NSEC students, engine
 ---
 
 # About NSEC FlashDrop
- NSEC FlashDrop is more than just a digital classifieds site; it is a dedicated effort to foster a circular economy within the NSEC campus. By encouraging the reuse of textbooks, electronics, and lab equipment, we reduce environmental waste and lower the financial barrier for students entering new semesters. Our platform shifts the focus from "buying new" to "buying smart," ensuring that high-value resources remain in circulation rather than gathering dust in hostel rooms. This sustainable approach not only preserves the environment but also strengthens the NSEC community by facilitating direct, peer-to-peer support and resource sharing.
+NSEC FlashDrop is more than just a digital classifieds site; it is a dedicated effort to foster a circular economy within the NSEC campus. By encouraging the reuse of textbooks, electronics, and lab equipment, we reduce environmental waste and lower the financial barrier for students entering new semesters. Our platform shifts the focus from "buying new" to "buying smart," ensuring that high-value resources remain in circulation rather than gathering dust in hostel rooms. This sustainable approach not only preserves the environment but also strengthens the NSEC community by facilitating direct, peer-to-peer support and resource sharing.
 
 
 ## Statement
