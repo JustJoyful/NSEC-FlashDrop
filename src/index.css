@@ -13,11 +13,30 @@
   --color-text: #111111;
   --color-text-muted: #444444;
   --color-border: #111111;
+  --color-nav-bg: rgba(255, 255, 255, 0.96);
+  --color-surface-muted: #f1f1f1;
+  --color-input-bg: #ffffff;
+  --color-input-focus: #ffffa5;
 
   --border-width: 3px;
   --shadow-brutal: 5px 5px 0px 0px var(--color-border);
   --shadow-brutal-hover: 7px 7px 0px 0px var(--color-border);
   --shadow-brutal-active: 0px 0px 0px 0px var(--color-border);
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0f1115;
+  --color-card: #1a1d23;
+  --color-accent: #ff4d7a;
+  --color-fomo: #ff5b80;
+  --color-available: #35d8b8;
+  --color-text: #f5f7fb;
+  --color-text-muted: #bcc4d1;
+  --color-border: #7f8a9c;
+  --color-nav-bg: rgba(26, 29, 35, 0.95);
+  --color-surface-muted: #252b36;
+  --color-input-bg: #1f2530;
+  --color-input-focus: #2e3645;
 }
 
 * {
@@ -32,6 +51,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 #root {
@@ -70,9 +90,10 @@ body {
   }
 
   .btn-ghost {
-    @apply bg-white text-[var(--color-text)] font-black uppercase tracking-wider
+    @apply text-[var(--color-text)] font-black uppercase tracking-wider
       py-2 px-4 border-[3px] border-[var(--color-border)] 
       transition-all duration-150 active:translate-x-1 active:translate-y-1;
+    background: var(--color-card);
     box-shadow: var(--shadow-brutal);
   }
 
@@ -97,10 +118,15 @@ body {
   }
 
   .input-field {
-    @apply w-full bg-white border-[3px] border-[var(--color-border)] text-[var(--color-text)]
-      px-4 py-3 outline-none focus:bg-[#FFFFA5] transition-colors
+    @apply w-full border-[3px] border-[var(--color-border)] text-[var(--color-text)]
+      px-4 py-3 outline-none transition-colors
       placeholder-[var(--color-text-muted)] font-bold;
+    background: var(--color-input-bg);
     box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.05);
+  }
+
+  .input-field:focus {
+    background: var(--color-input-focus);
   }
 
   .badge-fomo {

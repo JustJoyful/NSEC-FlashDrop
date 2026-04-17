@@ -26,8 +26,8 @@ export default function Home() {
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-12">
       {/* Hero Section - Neo-Brutalist */}
       <div 
-        className="text-center py-16 px-6 space-y-6 bg-white border-[3px] border-[var(--color-border)] relative"
-        style={{ boxShadow: 'var(--shadow-brutal)' }}
+        className="text-center py-16 px-6 space-y-6 border-[3px] border-[var(--color-border)] relative"
+        style={{ boxShadow: 'var(--shadow-brutal)', background: 'var(--color-card)' }}
       >
         <div className="absolute -top-4 -right-4 bg-[#FFCC00] text-black font-black uppercase text-xs px-3 py-1 border-[3px] border-black transform rotate-12 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
           Beta

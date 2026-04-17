@@ -80,7 +80,7 @@ export default function ItemCard({ item, currentUser }) {
   return (
     <div id={`item-${item.id}`} className="card flex flex-col">
       {/* Image */}
-      <div className="relative overflow-hidden bg-gray-100 border-b-[3px] border-[var(--color-border)] aspect-[4/3]">
+      <div className="relative overflow-hidden border-b-[3px] border-[var(--color-border)] aspect-[4/3]" style={{ background: 'var(--color-surface-muted)' }}>
         {item.image_url ? (
           <img
             src={item.image_url}
@@ -95,22 +95,22 @@ export default function ItemCard({ item, currentUser }) {
 
         {/* Sold overlay */}
         {item.is_sold && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
             <span className="bg-[#111111] text-white border-[3px] border-[#111111] px-4 py-2 font-black text-2xl tracking-widest transform -rotate-12 shadow-[4px_4px_0px_0px_#111111]">SOLD</span>
           </div>
         )}
 
         {/* Category badge */}
         <div className="absolute top-2 left-2">
-          <span className="text-xs font-black uppercase tracking-wide px-2 py-1 bg-white"
-            style={{ color: 'var(--color-text)', border: '3px solid var(--color-border)', boxShadow: '3px 3px 0px 0px var(--color-border)' }}>
+          <span className="text-xs font-black uppercase tracking-wide px-2 py-1"
+            style={{ color: 'var(--color-text)', background: 'var(--color-card)', border: '3px solid var(--color-border)', boxShadow: '3px 3px 0px 0px var(--color-border)' }}>
             {CATEGORY_EMOJI[item.category]} {item.category}
           </span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col flex-1 gap-2 bg-white">
+      <div className="p-4 flex flex-col flex-1 gap-2" style={{ background: 'var(--color-card)' }}>
         {/* Title + Price */}
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-black text-base leading-tight line-clamp-2" style={{ color: 'var(--color-text)' }}>

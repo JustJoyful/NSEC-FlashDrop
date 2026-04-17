@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 border-b" style={{ background: 'rgba(255,255,255,0.96)', borderColor: 'var(--color-border)', backdropFilter: 'blur(8px)' }}>
+      <nav className="sticky top-0 z-50 border-b" style={{ background: 'var(--color-nav-bg)', borderColor: 'var(--color-border)', backdropFilter: 'blur(8px)' }}>
         <div className="max-w-6xl mx-auto px-2 sm:px-4 min-h-14 sm:h-16 flex items-center justify-between gap-2">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1.5 sm:gap-2 group min-w-0">
@@ -65,7 +65,7 @@ export default function Navbar() {
                   <span className="sm:hidden">Sell</span>
                   <span className="hidden sm:inline">+ Sell My Stuff</span>
                 </button>
-                <Link to="/my-listings" className="bg-white text-[var(--color-text)] font-black uppercase tracking-wide text-[10px] sm:text-xs px-2 sm:px-3 py-1.5 sm:py-2 border-[3px] border-[var(--color-border)] shadow-[3px_3px_0px_0px_var(--color-border)] leading-none">
+                <Link to="/my-listings" className="text-[var(--color-text)] font-black uppercase tracking-wide text-[10px] sm:text-xs px-2 sm:px-3 py-1.5 sm:py-2 border-[3px] border-[var(--color-border)] shadow-[3px_3px_0px_0px_var(--color-border)] leading-none" style={{ background: 'var(--color-card)' }}>
                   <span className="sm:hidden">My</span>
                   <span className="hidden sm:inline">My Listings</span>
                 </Link>
