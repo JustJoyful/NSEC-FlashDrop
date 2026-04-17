@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 border-b border-border-main" style={{ background: 'var(--nav-bg)', backdropFilter: 'blur(8px)' }}>
+      <nav className="sticky top-0 z-50 border-b-[4px] border-border-main" style={{ background: 'var(--nav-bg)', backdropFilter: 'blur(8px)' }}>
         <div className="max-w-6xl mx-auto px-2 sm:px-4 min-h-14 sm:h-16 flex items-center justify-between gap-2">
           {/* Logo */}
           <Link to="/" className="group min-w-0">

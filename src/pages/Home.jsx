@@ -8,6 +8,7 @@ import FlashDropLogo from '../components/FlashDropLogo'
 export default function Home() {
   const [category, setCategory] = useState('All')
   const [user, setUser] = useState(null)
+  const [savedCount, setSavedCount] = useState(0)
   const { items, loading, error } = useItems(category)
 
   useEffect(() => {
@@ -20,8 +21,37 @@ export default function Home() {
     return () => listener.subscription.unsubscribe()
   }, [])
 
-  // Count saved items for the impact counter
-  const savedCount = items.length
+  useEffect(() => {
+    let active = true
+
+    const fetchSavedCount = async () => {
+      const { count, error: countError } = await supabase
+        .from('items')
+        .select('id', { count: 'exact', head: true })
+        .eq('is_sold', true)
+
+      if (!active) return
+
+      if (countError) {
+        console.error('Failed to fetch impact count:', countError.message)
+        return
+      }
+
+      setSavedCount(count || 0)
+    }
+
+    fetchSavedCount()
+
+    const impactChannel = supabase
+      .channel('impact-counter')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'items' }, fetchSavedCount)
+      .subscribe()
+
+    return () => {
+      active = false
+      supabase.removeChannel(impactChannel)
+    }
+  }, [])
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-12">

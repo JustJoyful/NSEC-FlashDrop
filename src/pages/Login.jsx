@@ -54,20 +54,20 @@ export default function Login() {
 
   return (
     <main className="flex items-center justify-center min-h-[80vh] px-4">
-      <div className="card w-full max-w-sm p-8 space-y-6" style={{ background: 'var(--color-card)' }}>
+      <div className="card w-full max-w-sm p-8 space-y-6">
         {!sent ? (
           <>
             <div className="text-center space-y-1">
               <span className="text-4xl">⚡</span>
-              <h1 className="text-2xl font-black" style={{ color: 'var(--color-text)' }}>Sign In</h1>
-              <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+              <h1 className="text-2xl font-black text-text-main">Sign In</h1>
+              <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
                 Use your NSEC email to buy or sell items.
               </p>
             </div>
 
             <form id="login-form" onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                <label className="block text-xs font-semibold mb-2" style={{ color: 'var(--text-muted)' }}>
                   NSEC Email
                 </label>
                 <input
@@ -83,7 +83,7 @@ export default function Login() {
               </div>
 
               {error && (
-                <p className="text-sm font-semibold" style={{ color: 'var(--color-fomo)' }}>{error}</p>
+                <p className="text-sm font-semibold text-fomo">{error}</p>
               )}
 
               <button id="send-magic-link-btn" type="submit" disabled={loading} className="btn-primary w-full disabled:opacity-60">
@@ -91,16 +91,16 @@ export default function Login() {
               </button>
             </form>
 
-            <p className="text-center text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="text-center text-xs" style={{ color: 'var(--text-muted)' }}>
               We&apos;ll send a login link to your inbox. No password needed.
             </p>
           </>
         ) : (
           <div className="text-center space-y-4">
             <span className="text-5xl">📬</span>
-            <h2 className="text-xl font-black" style={{ color: 'var(--color-text)' }}>Check your inbox!</h2>
-            <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-              We sent a magic link to <strong style={{ color: 'var(--color-accent)' }}>{email}</strong>.
+            <h2 className="text-xl font-black text-text-main">Check your inbox!</h2>
+            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+              We sent a magic link to <strong className="text-flash-pink">{email}</strong>.
               <br />Click it to sign in — no password needed.
             </p>
             <button

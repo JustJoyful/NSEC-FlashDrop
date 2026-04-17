@@ -77,12 +77,12 @@ export default function AuthCallback() {
 
   return (
     <main className="flex items-center justify-center min-h-[80vh] px-4">
-      <div className="card w-full max-w-md p-8 text-center space-y-4" style={{ background: 'var(--color-card)' }}>
+      <div className="card w-full max-w-md p-8 text-center space-y-4">
         <p className="text-4xl">{status === 'error' ? '⚠️' : '⚡'}</p>
-        <h1 className="text-xl font-black" style={{ color: 'var(--color-text)' }}>
+        <h1 className="text-xl font-black text-text-main">
           {status === 'error' ? 'Login failed' : 'Authenticating'}
         </h1>
-        <p className="text-sm font-semibold" style={{ color: status === 'error' ? 'var(--color-fomo)' : 'var(--color-text-muted)' }}>
+        <p className="text-sm font-semibold" style={{ color: status === 'error' ? '#FF2D55' : 'var(--text-muted)' }}>
           {message}
         </p>
         {status === 'error' && (

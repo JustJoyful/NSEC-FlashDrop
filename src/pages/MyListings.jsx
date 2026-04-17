@@ -127,8 +127,8 @@ export default function MyListings() {
         <div className="space-y-4">
           {[1, 2, 3].map(i => (
             <div key={i} className="card p-4 animate-pulse">
-              <div className="h-4 bg-[#1C1C2E] rounded w-1/2 mb-3" />
-              <div className="h-3 bg-[#1C1C2E] rounded w-1/4" />
+              <div className="h-4 bg-[var(--surface-muted)] w-1/2 mb-3 border-[4px] border-border-main" />
+              <div className="h-3 bg-[var(--surface-muted)] w-1/4 border-[4px] border-border-main" />
             </div>
           ))}
         </div>
@@ -139,14 +139,14 @@ export default function MyListings() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-8 space-y-6">
       <div>
-        <h1 className="text-2xl font-black" style={{ color: 'var(--color-text)' }}>My Listings</h1>
-        <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>
+        <h1 className="text-2xl font-black text-text-main">My Listings</h1>
+        <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>
           {items.length} listing{items.length !== 1 ? 's' : ''} total
         </p>
       </div>
 
       {error && (
-        <p className="text-sm font-semibold" style={{ color: 'var(--color-fomo)' }}>
+        <p className="text-sm font-semibold text-fomo">
           {error}
         </p>
       )}
@@ -154,8 +154,8 @@ export default function MyListings() {
       {items.length === 0 && (
         <div className="text-center py-16">
           <p className="text-4xl mb-3">📦</p>
-          <p className="font-semibold" style={{ color: 'var(--color-text)' }}>No listings yet.</p>
-          <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>Hit &ldquo;Sell My Stuff&rdquo; to post your first item.</p>
+          <p className="font-semibold text-text-main">No listings yet.</p>
+          <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>Hit &ldquo;Sell My Stuff&rdquo; to post your first item.</p>
         </div>
       )}
 
@@ -168,14 +168,14 @@ export default function MyListings() {
             {/* Image */}
             {primaryImage && (
               <img src={primaryImage} alt={item.title}
-                className="w-20 h-20 object-cover rounded-xl flex-shrink-0" />
+                className="w-20 h-20 object-cover flex-shrink-0 border-[4px] border-border-main" />
             )}
 
             {/* Info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-bold truncate" style={{ color: 'var(--color-text)' }}>{item.title}</h3>
-                <span className="font-black flex-shrink-0" style={{ color: 'var(--color-accent)' }}>₹{item.price}</span>
+                <h3 className="font-bold truncate text-text-main">{item.title}</h3>
+                <span className="font-black flex-shrink-0 text-flash-pink">₹{item.price}</span>
               </div>
               <p className={`text-xs font-semibold mt-1 ${CONDITION_COLORS[item.condition] || 'text-gray-400'}`}>
                 {item.condition}
@@ -194,13 +194,15 @@ export default function MyListings() {
                   id={`mark-sold-${item.id}`}
                   onClick={() => markAsSold(item.id)}
                   disabled={marking === item.id}
-                  className="text-xs font-bold px-3 py-2 rounded-xl border border-available text-available hover:bg-available/10 transition-colors disabled:opacity-50">
+                  className="text-xs font-black uppercase tracking-wider px-3 py-2 border-[4px] border-available text-available bg-bg-main transition-all duration-150 hover:-translate-x-[1px] hover:-translate-y-[1px] disabled:opacity-50"
+                  style={{ boxShadow: '4px 4px 0px 0px var(--shadow-hard)' }}>
                   {marking === item.id ? '...' : '✓ Mark Sold'}
                 </button>
                 <button
                   id={`delete-${item.id}`}
                   onClick={() => deleteItem(item.id)}
-                  className="text-xs font-bold px-3 py-2 rounded-xl border border-red-800/50 text-red-500 hover:bg-red-900/10 transition-colors">
+                  className="text-xs font-black uppercase tracking-wider px-3 py-2 border-[4px] border-[#F7768E] text-[#F7768E] bg-bg-main transition-all duration-150 hover:-translate-x-[1px] hover:-translate-y-[1px]"
+                  style={{ boxShadow: '4px 4px 0px 0px var(--shadow-hard)' }}>
                   Delete
                 </button>
               </div>

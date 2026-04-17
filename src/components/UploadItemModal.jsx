@@ -39,6 +39,17 @@ export default function UploadItemModal({ onClose }) {
     }
   }, [imagePreviews])
 
+  useEffect(() => {
+    const onEscape = e => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    window.addEventListener('keydown', onEscape)
+    return () => window.removeEventListener('keydown', onEscape)
+  }, [onClose])
+
   const handleSubmit = async e => {
     e.preventDefault()
     setError('')
@@ -131,10 +142,12 @@ export default function UploadItemModal({ onClose }) {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.82)', backdropFilter: 'blur(8px)' }}
+      onClick={onClose}
     >
       <div
         className="w-full max-w-2xl max-h-[92vh] overflow-y-auto border-[4px]"
         style={{ background: 'var(--card-main)', borderColor: 'var(--border-main)', boxShadow: '8px 8px 0px 0px var(--shadow-hard)' }}
+        onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between p-5 border-b-[4px]" style={{ borderColor: 'var(--border-main)' }}>
           <h2 className="text-lg font-black uppercase tracking-wide text-text-main">

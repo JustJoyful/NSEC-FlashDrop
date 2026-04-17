@@ -21,7 +21,7 @@ export default function FlashDropLogo({ size = 'nav' }) {
       <span className="text-sm sm:text-xl font-black tracking-tight truncate text-text-main inline-flex items-center gap-1 leading-none">
         <span>Flash</span>
         <span
-          className="inline-flex items-center justify-center px-1.5 sm:px-2 h-[1.45em] leading-none border-[4px] border-border-main shadow-[6px_6px_0px_0px_var(--shadow-hard)]"
+          className="inline-flex items-center justify-center px-1.5 sm:px-2 h-[1.45em] leading-none border-[3px] sm:border-[4px] border-border-main shadow-[6px_6px_0px_0px_var(--shadow-hard)]"
           style={{ background: '#ff3366' }}
         >
           DROP

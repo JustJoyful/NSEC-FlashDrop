@@ -39,6 +39,7 @@ export default function ListItemModal({ item, currentUser, onClose }) {
     }
     if (!currentUser) {
       setError('Sign in with your NSEC email to claim this item.')
+      onClose()
       navigate('/login')
       return
     }
