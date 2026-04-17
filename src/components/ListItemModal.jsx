@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { getSellerUsername, parseItemImages } from '../lib/itemMedia'
+import FomoBadge from './FomoBadge'
 
 function openWhatsApp(sellerPhone, itemTitle, price) {
   const message = encodeURIComponent(
@@ -14,6 +15,7 @@ export default function ListItemModal({ item, currentUser, onClose }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [claiming, setClaiming] = useState(false)
   const [error, setError] = useState('')
+  const [interestedCount, setInterestedCount] = useState(Number(item?.interested_count) || 0)
   const navigate = useNavigate()
 
   const images = useMemo(() => parseItemImages(item), [item])
@@ -29,6 +31,10 @@ export default function ListItemModal({ item, currentUser, onClose }) {
     window.addEventListener('keydown', onEscape)
     return () => window.removeEventListener('keydown', onEscape)
   }, [onClose])
+
+  useEffect(() => {
+    setInterestedCount(Number(item?.interested_count) || 0)
+  }, [item?.id, item?.interested_count])
 
   const handleClaim = async () => {
     setError('')
@@ -59,6 +65,7 @@ export default function ListItemModal({ item, currentUser, onClose }) {
       if (insertedRows?.length) {
         const { error: rpcError } = await supabase.rpc('increment_interest', { item_id: item.id })
         if (rpcError) throw rpcError
+        setInterestedCount(prev => prev + 1)
       }
 
       openWhatsApp(item.seller_whatsapp, item.title, item.price)
@@ -138,6 +145,10 @@ export default function ListItemModal({ item, currentUser, onClose }) {
             <p className="inline-block mt-3 text-xl sm:text-2xl font-black uppercase px-3 py-1 border-[4px]" style={{ background: 'var(--price-bg)', color: 'var(--price-text)', borderColor: 'var(--border-main)', boxShadow: '6px 6px 0px 0px var(--shadow-hard)' }}>
               ₹{item?.price}
             </p>
+
+            <div className="mt-3">
+              <FomoBadge count={interestedCount} />
+            </div>
 
             <div className="mt-5 border-[4px] p-3 min-h-[120px]" style={{ borderColor: 'var(--border-main)', background: 'var(--surface-muted)' }}>
               <p className="text-xs font-black uppercase tracking-wide mb-2 text-text-main">

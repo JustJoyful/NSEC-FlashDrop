@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ListItemModal from './ListItemModal'
 import CountdownTimer from './CountdownTimer'
+import FomoBadge from './FomoBadge'
 import { getPrimaryImage, getSellerUsername } from '../lib/itemMedia'
 
 const CATEGORY_EMOJI = {
@@ -11,10 +12,17 @@ const CATEGORY_EMOJI = {
   'Other': '📦',
 }
 
+const CONDITION_STYLES = {
+  'Like New': { background: '#B8F7CF', color: '#0D3B1F' },
+  'Good': { background: '#FFE28A', color: '#3D2A00' },
+  'Fair': { background: '#FFD1B0', color: '#4A2100' },
+}
+
 export default function ItemCard({ item, currentUser }) {
   const [showDetails, setShowDetails] = useState(false)
   const primaryImage = getPrimaryImage(item)
   const sellerUsername = getSellerUsername(item)
+  const conditionStyle = CONDITION_STYLES[item.condition] || { background: 'var(--surface-muted)', color: 'var(--text-main)' }
 
   return (
     <>
@@ -67,11 +75,31 @@ export default function ItemCard({ item, currentUser }) {
             </span>
           </div>
 
+          {item.condition && (
+            <div className="mt-2">
+              <span
+                className="inline-flex items-center px-2 py-1 border-[4px] text-[10px] sm:text-xs font-black uppercase tracking-wide"
+                style={{
+                  background: conditionStyle.background,
+                  color: conditionStyle.color,
+                  borderColor: 'var(--border-main)',
+                  boxShadow: '4px 4px 0px 0px var(--shadow-hard)',
+                }}
+              >
+                Condition: {item.condition}
+              </span>
+            </div>
+          )}
+
           {item.expires_at && (
             <div className="mt-2">
               <CountdownTimer expiresAt={item.expires_at} />
             </div>
           )}
+
+          <div className="mt-2">
+            <FomoBadge count={item.interested_count} />
+          </div>
 
           <div className="hidden md:block max-h-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:max-h-28 group-hover:opacity-100">
             <div className="mt-3 pt-3 border-t-[4px]" style={{ borderColor: 'var(--border-main)' }}>
