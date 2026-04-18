@@ -39,8 +39,8 @@ Every listing has an **expiry clock**. When it runs out, the listing vanishes. T
 
 ### The Solution
 
-- 🔐 **NSEC-only** — only `@nsec.ac.in` email addresses can list or claim
-- ⚡ **Flash listings** — every item has a countdown; urgency drives action
+- 🔐 **NSEC-only** — only `@nsec.ac.in` email addresses can list or claim.
+- ⚡ **Flash listings** — every item has a countdown; urgency drives action.
 - 💬 **Zero friction claiming** — one tap opens WhatsApp directly to the seller.
 - 🌱 **Impact counter** — tracks how many items were saved from the landfill this semester.
 - 🔴 **Realtime feed** — new listings appear instantly via Supabase Realtime subscriptions.
