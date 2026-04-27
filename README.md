@@ -2,7 +2,7 @@
 
 # ⚡ FlashDrop
 
-### **Live → [https://flashdrop.vercel.app](https://flashdrop.vercel.app)**
+### **Live → [https://nsec-flashdrop.vercel.app](https://flashdrop.vercel.app)**
 
 A hyper-local, time-limited circular economy marketplace built exclusively for **NSEC students**.  
 List. Claim. Repeat — before the clock runs out.
